@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <meta charset="UTF-8">
+    <title>Page Title</title>
+</head>
+<body>
+    <h2>JavaScript Numbers</h2>
+
+    <div>Infinity is returned if you calculate a number outside the largest possible number:</div>
+
+    <div id="demo"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2>JavaScript Numbers</h2>
+
+    <div>JavaScript objects cannot be compared:</div>
+
+    <div id="demo2"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <button>Start machine</button>
+    <p>The machine is stopped.</p>
+
+    <script>
+        let x = 100 + 50; // two numbers can be literals
+        // alert(x);
+
+        let a, b; // two numbers can be variables
+        a = 20;
+        b = 30;
+        let c = a + b;
+        // alert(c);
+
+        let y = (100 + 50) * a; // two numbers can be expressions
+        // alert(y);
+
+        let d, e;
+        d = 10;
+        e = 5;
+        d += e;
+        // alert(d);
+
+        let f = 5;
+        let g = 2;
+        let h = f - g;
+        // alert(h);
+
+        let i = 5;
+        let j = 2;
+        let k = i * j;
+        // alert(k);
+
+        let l = 5;
+        let m = 2;
+        let n = l % m;
+        // alert(n);
+
+        let o = 5;
+        o++; // incrementing by 1
+        let p = o;
+        // alert(p);
+
+        let q = 5;
+        q--; // decrementing by 1
+        let r = q;
+        // alert(r);
+
+        let s = 5;
+        let t = s ** 2; // exponentiation by the second operand, 2
+        // alert(t);
+
+        let u = 5;
+        let v = Math.pow(u,2); // same exponentiation as above
+        // alert(v);
+
+        let w = (100 + 50) * 3;
+        // alert(w);
+
+        let z = 3.14; // numbers can be written w/ or w/o decimals
+        let aa = 3;
+
+        let bb = 123e5; // extra large or extra small numbers can be written with scientific (exponent) notation
+        let cc = 123e-5;
+
+        let dd = 0.2 + 0.1; // floating point arithmetic is not always accurate
+        let ee = (0.2 * 10 + 0.1 * 10) / 10; // to solve the problem above, it helpts to multiply and divide
+        // alert(dd);
+        // alert(ee);
+
+        let ff = "10"; // adding 2 strings results in a string concatenation
+        let gg = "20";
+        let hh = ff + gg;
+        // alert(hh);
+
+        let ii = 10; // adding a number and string results in a string concatenation
+        let jj  = "20";
+        let kk = ii + jj;
+        // alert(kk);
+
+        let ll = 10;
+        let mm = 20;
+        let nn = "The result is: " + ll + mm; // result will be 1020
+        // alert(nn);
+
+        let oo = 10;
+        let pp = 20;
+        let qq = "30";
+        let result = oo + pp + qq; // result will be 3030
+        // alert(result);
+
+        let rr = "100"; // JS tries to convert strings to numbers in all numeric operations, * and -, except +
+        let ss = "10";
+        let tt = rr / ss;
+        // alert(tt);
+
+        let uu = 100 / "Apple";
+        // alert(uu);
+
+        let vv = 50 / "Apple";
+        isNaN(vv); // global JS function to find out if a value is not a number
+        // alert(vv);
+
+        let ww = NaN; // using NaN in a math operation gives of result of NaN
+        let xx = 5;
+        let yy = ww + xx; 
+        // alert(yy);
+
+        // alert(typeof NaN); // returns number
+
+        let myNumber = 2; 
+        let txt = "";
+        while (myNumber != Infinity) {
+            myNumber = myNumber * myNumber;
+            txt = txt + myNumber + "<br>";
+        }       
+        document.getElementById("demo").innerHTML = txt; // infinity or -infinity is the value JS returns if I calculate a number outside the largest or smallest possible number
+
+        let zz = 2 / 0;
+        // alert(zz);
+
+        let aaa = -2 / 0;
+        // alert(aaa);
+
+        // alert(typeof Infinity); // returns number
+
+        let bbb = 0xFF; // JS interprets numeric constants preceded by 0x as hexidecimal
+
+        let Numbera = 32;
+        // alert(Numbera.toString(32)); // toString() method outputs numbers from base 2 to 36;
+        // alert(Numbera.toString(16));
+        // alert(Numbera.toString(12));
+        // alert(Numbera.toString(10));
+        // alert(Numbera.toString(8));
+        // alert(Numbera.toString(2));
+
+        // JS numbers are normally primitive values created from literals
+        let ccc = 123;
+        let ddd = new Number(123); // numbers can be defined as objects with the keyword "new"
+        // alert(typeof ddd); // returns object
+
+        // *DO NOT CREATE NUMBER OBJECTS: it complicates the code, slows down execution speed, and can produce unexpected results
+
+        // x is an object
+        let eee = new Number(500);
+
+        // y is an object
+        let fff = new Number(500);
+
+        document.getElementById("demo2").innerHTML = (eee==fff); // false for (eee==fff) and (eee===fff) because JS objects cannot be compared; comparing 2 JS objects always returns false
+        
+        const btn = document.querySelector("button");
+        const txta = document.querySelector("p");
+
+        btn.addEventListener("click", updateBtn);
+
+        function updateBtn() {
+
+            // if the button is currently saying "Start machine" when it is pressed,
+            if (btn.textContent === "Start machine") { // testing whether the text content of a button contains a certain string
+                
+                // change its label to "Stop machine" and update the label
+                btn.textContent = "Stop machine";
+                txta.textContent = "The machine has started!";
+
+            } else {
+                
+                // if the button is currently saying "Stop machine" when it is pressed,
+                // change its label to "Start machine" and update its label
+                btn.textContent = "Start machine";
+                txta.textContent = "The machine is stopped.";
+            }
+        } 
+    </script>
+</body>
+</html>
