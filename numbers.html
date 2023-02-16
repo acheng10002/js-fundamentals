@@ -23,7 +23,6 @@
     <br>
     <br>
     <br>
-
     <button>Start machine</button>
     <p>The machine is stopped.</p>
 
@@ -93,36 +92,36 @@
         // alert(dd);
         // alert(ee);
 
-        let ff = "10"; // adding 2 strings results in a string concatenation
-        let gg = "20";
+        let ff = '10'; // adding 2 strings results in a string concatenation
+        let gg = '20';
         let hh = ff + gg;
         // alert(hh);
 
         let ii = 10; // adding a number and string results in a string concatenation
-        let jj  = "20";
+        let jj  = '20';
         let kk = ii + jj;
         // alert(kk);
 
         let ll = 10;
         let mm = 20;
-        let nn = "The result is: " + ll + mm; // result will be 1020
+        let nn = 'The result is: ' + ll + mm; // result will be 1020
         // alert(nn);
 
         let oo = 10;
         let pp = 20;
-        let qq = "30";
+        let qq = '30';
         let result = oo + pp + qq; // result will be 3030
         // alert(result);
 
-        let rr = "100"; // JS tries to convert strings to numbers in all numeric operations, * and -, except +
-        let ss = "10";
+        let rr = '100'; // JS tries to convert strings to numbers in all numeric operations, * and -, except +
+        let ss = '10';
         let tt = rr / ss;
         // alert(tt);
 
-        let uu = 100 / "Apple";
+        let uu = 100 / 'Apple';
         // alert(uu);
 
-        let vv = 50 / "Apple";
+        let vv = 50 / 'Apple';
         isNaN(vv); // global JS function to find out if a value is not a number
         // alert(vv);
 
@@ -134,12 +133,12 @@
         // alert(typeof NaN); // returns number
 
         let myNumber = 2; 
-        let txt = "";
+        let txt = '';
         while (myNumber != Infinity) {
             myNumber = myNumber * myNumber;
-            txt = txt + myNumber + "<br>";
+            txt = txt + myNumber + '<br>'';
         }       
-        document.getElementById("demo").innerHTML = txt; // infinity or -infinity is the value JS returns if I calculate a number outside the largest or smallest possible number
+        document.getElementById('demo').innerHTML = txt; // infinity or -infinity is the value JS returns if I calculate a number outside the largest or smallest possible number
 
         let zz = 2 / 0;
         // alert(zz);
@@ -172,28 +171,107 @@
         // y is an object
         let fff = new Number(500);
 
-        document.getElementById("demo2").innerHTML = (eee==fff); // false for (eee==fff) and (eee===fff) because JS objects cannot be compared; comparing 2 JS objects always returns false
+        let ggg = 1;
+        ggg = -ggg; // unary negation applied
+        // alert(ggg);
+
+        // alert (2 + 2 + '1');
         
-        const btn = document.querySelector("button");
-        const txta = document.querySelector("p");
+        // alert (+true); unary plus operator converts non-numers to numbers
+
+        // alert (+""); it actually does the same thing as Number()
+
+        let apples = '2';
+        let oranges = '3';
+
+        // alert(+apples + +oranges); // shorter than alert(Number(apples) + Number(oranges));
+
+        let hhh = 1;
+        let iii = 2;
+
+        let jjj = 3 - (hhh = iii + 1); // addition is higher in precedence than assignment
+
+        // alert(hhh);
+        // alert(jjj);
+
+        let kkk, lll, mmm;
+        // kkk = lll = mmm = 2 + 2; better to have lines below
+        mmm = 2 + 2;
+        lll = mmm;
+        kkk = mmm;
+
+        // alert(kkk);
+        // alert(lll);
+        // alert(mmm);
+
+        let counter = 1;
+        // alert(2 * ++counter);
+
+        let countera = 1;
+        // alert(2 * countera++); less readable than lines below
+        // alert(2 * countera);
+        // countera++;
+
+        let nnn = (1 + 2, 3 + 4); // without the (), nnn would be 3 instead of 7 because = has a higher precedence than comma
+        // alert(nnn);
+
+        let ooo = 1, ppp = 1;
+
+        let qqq = ++ooo;
+        let rrr = ppp++;
+
+        // alert(qqq); 
+        // alert(rrr); 
+
+        // alert(ooo);
+        // alert(ppp);
+
+        let sss = 2;
+        let ttt = 1 + (sss *= 2);
+
+        console.log(23 + 97);
+        
+        console.log(1 + 2 + 3 + 4 + 5 + 6);
+        
+        console.log((4 + 6 + 9) / 77);
+
+        let aaaa = 10;
+        console.log(aaaa);
+
+        let bbbb = 7 * aaaa;
+        console.log(bbbb);
+
+        const max = 57;
+        console.log(max);
+
+        let actual = max - 13;
+        console.log(actual);
+
+        let percentage = actual / max;
+        console.log(percentage);
+
+        document.getElementById('demo2').innerHTML = (eee==fff); // false for (eee==fff) and (eee===fff) because JS objects cannot be compared; comparing 2 JS objects always returns false
+        
+        const btn = document.querySelector('button');
+        const txta = document.querySelector('p');
 
         btn.addEventListener("click", updateBtn);
 
         function updateBtn() {
 
             // if the button is currently saying "Start machine" when it is pressed,
-            if (btn.textContent === "Start machine") { // testing whether the text content of a button contains a certain string
+            if (btn.textContent === 'Start machine') { // testing whether the text content of a button contains a certain string
                 
                 // change its label to "Stop machine" and update the label
-                btn.textContent = "Stop machine";
-                txta.textContent = "The machine has started!";
+                btn.textContent = 'Stop machine';
+                txta.textContent = 'The machine has started!';
 
             } else {
                 
                 // if the button is currently saying "Stop machine" when it is pressed,
                 // change its label to "Start machine" and update its label
-                btn.textContent = "Start machine";
-                txta.textContent = "The machine is stopped.";
+                btn.textContent = 'Start machine';
+                txta.textContent = 'The machine is stopped.';
             }
         } 
     </script>

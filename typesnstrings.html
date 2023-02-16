@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <meta charset="UTF-8">
+    <title>Page Title</title>
+</head>
+<body>
+    <button>Press me</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2>The replaceAll() Method</h2>
+
+    <p>ES2021 intoduced the string method replaceAll().</p>
+
+    <p id="demo"></p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>JavaScript String Methods</h1>
+
+    <p>Display the first array element, after a string split:</p>
+
+    <p id="demo2"></p>
+
+    <h2>The split().Method</h2>
+
+    <p id="demo3"></p>
+    <script>
+        const string = 'The revolution will not be televised.';
+        console.log(string);
+
+        const bigmouth = 'I\'ve got no right to take my place...';
+        console.log(bigmouth);
+
+        const name = 'Chris';
+        const greeting = `Hello, ${name}`;
+        console.log(greeting);
+
+        const one = 'Hello, '; // I can use the same technique as the lines above to join together two variables
+        const two = 'how are you?';
+        const joined = `${one}${two}`;
+        console.log(joined);
+
+        const button = document.querySelector('button');
+
+        function greet() {
+            const name = prompt('What is your name?'); // using wind.prompt() function, asks the user to answer a question via a popup dialog box
+            alert(`Hello ${name}, nice to see you!`);  // the answer text is stored inside the name variable
+                                                       // window.alert() function displays another popup containing a string which 
+                                                       // puts the name into a generic greeting message
+        }
+
+        button.addEventListener('click', greet);
+
+        const namea = 'Front ';
+        const number = 242;
+        console.log(`${namea}${number}`); // browser converts the number to a string and concatenates the 2 strings
+
+        const myString = '123';
+        const myNum = Number(myString); // function converts anything passed io it into a number, if ti can
+        console.log(typeof myNum);
+
+        const myNum2 = 123;
+        const myString2 = myNum2.toString(); // method that converts any number to an equivalent string
+        console.log(typeof myString2);
+
+        const song = 'Fight the Youth';
+        const score = 9;
+        const highestScore = 10;
+        const output = `I like the song ${song}. I gave it a score of ${
+            (score / highestScore) * 100
+        }%.`;
+        console.log(output);
+
+        const output2 = `I like the song.
+        I gave it a score of 90%.`; // template literals respect the line break
+        console.log(output2);
+
+        const output3 = "I like the song.\nI gave it a score of 90%."; // to have equivalent output, I have to include line break character (\n) in the string
+        console.log(output);
+
+        let text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let length = text.length; 
+        console.log(length);
+
+        let text2 = 'Apple, Banana, Kiwi';
+        let part1 = text2.slice(7, 13); // remember JS counts positions from zero
+        console.log(part1);
+
+        let part2 = text2.slice(7); 
+        console.log(part2); // without the second parameter, the method will slice out the rest of the string
+
+        let part3 = text2.slice(-12);
+        console.log(part3); // if the parameter is negative, the position is counted from the end of the string
+
+        let part4 = text2.slice(-12, -6);
+        console.log(part4); // slices out a portion of a string from position -12 to position -6
+
+        let part5 = text2.substring(7, 13); // without the second parameter, the method will slice out the rest of the string
+        console.log(part5);
+
+        let part6 = text2.substr(7, 6); // second parameter specifies the length of the extracted part
+        console.log(part6); 
+
+        let part7 = text2.substr(7); // without the second parameter, the method will slice out the rest of the string
+        console.log(part7);
+
+        let part8 = text2.substr(-4); // if the first parameter is negative, the position counts from the end of the string
+        console.log(part8);
+
+        let text3 = 'Please visit Microsoft!';
+        let newText3 = text3.replace('Microsoft', 'W3Schools');
+        console.log(newText3);
+
+        let text4 = 'Please visit Microsoft and Microsoft!';
+        let newText4 = text4.replace('Microsoft', 'W3Schools');
+        console.log(newText4);
+
+        let newText5 = text3.replace('MICROSOFT', 'W3Schools');
+        console.log(newText5); // replace() method is case sensitive
+
+        let newText6 = text3.replace(/MICROSOFT/i, 'W3Schools'); // regex with /i replaces case insensitive
+        console.log(newText6);
+        
+        let newText7 = text4.replace(/Microsoft/g, 'W3Schools'); // regex with /g replaces all matches
+        console.log(newText7);
+
+        let text5 = 'I love cats. Cats are very easy to love. Cats are very popular.';
+        text5 = text5.replaceAll('Cats','Dogs');
+        text5 = text5.replaceAll('cats','dogs');
+
+        document.getElementById("demo").innerHTML = text5;
+
+        let text6 = 'Hello';
+        let text7 = 'World';
+        let text8 = text6.concat(' ', text7);
+        console.log(text8);
+
+        text9 = 'Hello' + ' ' + 'World!';
+        console.log(text9);
+
+        let texta = '   Hello World!   ';
+        let textb = texta.trim();
+        console.log(textb);
+
+        let textc = texta.trimStart();
+        console.log(textc);
+
+        let textd = texta.trimEnd();
+        console.log(textd);
+
+        let texte = '5';
+        let paddede = texte.padStart(4,'x'); // first parameter is the position after the string
+        console.log(paddede);
+        
+        let paddedf = texte.padStart(4, '0');
+        console.log(paddedf);
+
+        let numb = 5;
+        let textf = numb.toString(); // to pad a number, it must be converted to a string first
+        let paddedg = textf.padStart(4, '0');
+        console.log(paddedg);
+
+        let paddedh = textf.padEnd(4,'x');
+        console.log(paddedh);
+
+        let textg = "HELLO WORLD";
+        let charg = textg.charAt(0);
+        console.log(charg); // returns H
+
+        let charh = textg.charCodeAt(0);
+        console.log(charh); // 72 which is the unicode for H
+
+        let chari = textg[0];
+        console.log(chari); // returns H
+
+        let texth = "a,b,c,d,e,f";
+        const myArray = texth.split(",");
+        document.getElementById("demo2").innerHTML = myArray[0];
+
+        texth.split(','); // split on commas
+        texth.split(' '); // split on spaces
+        texth.split('|'); // split on pipe
+
+        let texti = "Hello";
+        const myArr = texti.split("");
+
+        texti = "";
+        for (let i = 0; i < myArr.length; i++) {
+            texti += myArr[i] + "<br>"
+        }
+        document.getElementById("demo3").innerHTML = texti;
+
+    </script>
+</body>
+</html>
