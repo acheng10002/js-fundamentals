@@ -44,7 +44,12 @@
         <option value="black">Black</option>
     </select>
 
-    <h1>This is my website</h1>
+    <!-- <h1>This is my website</h1> -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Hello, World!</h1>
     
     <script>
         // alert(2 == 1); all comparison operators return a Boolean value
@@ -286,7 +291,7 @@
 
         const select2 = document.querySelector('select');
         const list = document.querySelector('ul');
-        const h1 = document.querySelector('h1');
+        // const h1 = document.querySelector('h1');
 
         select2.addEventListener('change', () => {
         const choice = select.value;
@@ -446,6 +451,30 @@
 	        default:
 		        console.log("Something went wrong.");
         }
+
+        console.log('Loading!');
+        const h1 = document.querySelector('h1');
+        console.log(h1.textContent);
+        console.assert(document.querySelector('h2'), 'h2 not found!');
+        const artists = [
+        {
+          first: 'René',
+          last: 'Magritte'
+        },
+        {
+          first: 'Chaim',
+          last: 'Soutine'
+        },
+        {
+          first: 'Henri',
+          last: 'Matisse'
+        }
+        ];
+        console.table(artists);
+        setTimeout(() => {
+            h1.textContent = 'Hello, Console!';
+            console.log(h1.textContent);
+        }, 3000);
     </script>
 </body>
 </html>
