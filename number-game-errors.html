@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+      .lastResult {
+        color: white;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+      <h1>Number guessing game</h1>
+
+      <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or less. We'll tell you if your guess was too high or too low.</p>
+
+<div class="form">
+  <label for="guessField">Enter a guess: </label>
+  <input type="text" id="guessField" class="guessField">
+  <input type="submit" value="Submit guess" class="guessSubmit">
+</div>
+
+<div class="resultParas">
+  <p class="guesses"></p>
+  <p class="lastResult"></p>
+  <p class="lowOrHi"></p>
+</div>
+
+</body>
+
+<script>
+  // Math.random() generates a random decimal number between 0 and 1,
+  // Math.floor() rounds the number passed to it down to the nearest whole number,
+  // then add 1 to that result
+  // let randomNumber = Math.floor(Math.random()) + 1;
+  // below would give me a random number between 0 and 99
+  // let randomNumber = Math.floor(Math.random() * 100);
+  // add 1 to give me a random number between 1 and 100
+  let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+  // check is the line above is the problem
+  console.log(randomNumber);
+
+  const guesses = document.querySelector('.guesses');
+  const lastResult = document.querySelector('.lastResult');
+
+  // trying to make the variable contain a reference to an element in the document's html
+  // using document.querySelector() method to get a reference to an element by selecting it with a CSS selector
+  // it's using a CSS class selector, and those begin with a . as in .lowOrHi
+  const lowOrHi = document.querySelector('.lowOrHi');
+
+  // check whether the value is null after the previous line, and it is!
+  console.log(lowOrHi);
+
+  const guessSubmit = document.querySelector('.guessSubmit');
+  const guessField = document.querySelector('.guessField');
+
+  let guessCount = 1;
+  let resetButton;
+
+  // if below was instead function checkGuess( {, I would get a SyntaxError: missing : after property id
+  // because the browser thinks I am trying to pass the contents of the function into the function as an argument
+  function checkGuess() {
+
+    // const userGuess === Number(guessField.value); would not work, and the browser thinks I am trying to do something different
+    const userGuess = Number(guessField.value);
+    if(guessCount === 1) {
+      guesses.textContent = 'Previous guesses: ';
+    }
+    guesses.textContent += userGuess + ' ';
+
+    // if below was instead if(userGuess = randomNumber), the test would always return true and cause the program to report that the game has been won
+    if(userGuess === randomNumber) {
+      lastResult.textContent = 'Congratulations! You got it right!';
+      lastResult.style.backgroundColor = 'green';
+      lowOrHi.textContent = '';
+      setGameOver();
+    } else if(guessCount === 10) {
+      lastResult.textContent = '!!!GAME OVER!!!';
+      setGameOver();
+    } else {
+      lastResult.textContent = 'Wrong!';
+      lastResult.style.backgroundColor = 'red';
+      if(userGuess < randomNumber) {
+        lowOrHi.textContent = 'Last guess was too low!';
+      } else if(userGuess > randomNumber) {
+
+        // remember, null means 'nothing' or 'no value', lowOrHi has been declared and initialized but not with any meaningfu value, no type or value
+        // this error didn't come up as soon as the page was loaded because this error occurred inside a function, checkGuess() { } block
+        // lowOrHi.textContent = 'Last guess was too high!';
+      }
+    }
+
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+  }
+
+  // TypeError: guessSubmit.addeventListener is not a function 
+  // the function I'm calling is not recognized by the JS interpreter
+  // ...because it's spelled wrong!
+  // guessSubmit.addeventListener('click', checkGuess);
+     guessSubmit.addEventListener('click', checkGuess);
+
+  function setGameOver() {
+	  guessField.disabled = true;
+	  guessSubmit.disabled = true;
+	  resetButton = document.createElement('button');
+	  resetButton.textContent = 'Start new game';
+	  document.body.appendChild(resetButton);
+	  resetButton.addEventListener('click', resetGame);
+  }
+
+  function resetGame() {
+	  guessCount = 1;
+
+    const resetParas = document.querySelectorAll('.resultParas p');
+    for (const resetPara of resetParas) {
+      resetPara.textContent = '';
+    }
+	  resetButton.parentNode.removeChild(resetButton);
+
+	  guessField.disabled = false;
+	  guessSubmit.disabled = false;
+	  guessField.value = '';
+	  guessField.focus();
+
+	  lastResult.style.backgroundColor = 'white';
+
+	  let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+    // check is the line above is the problem
+       console.log(randomNumber);
+  }
+</script>
+</html>
