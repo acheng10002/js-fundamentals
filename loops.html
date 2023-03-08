@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang=""en-us">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Page Title</title>
+</head>
+<body>
+    <h2>JavaScript Loops</h2>
+
+    <h3>Exiting loops with break</h3>
+
+    <!-- <label for="search">Search by contact name: </label> -->
+    
+    <!-- input allows a user to enter a name to search for --> 
+    <!-- <input id="search" type="text" /> -->
+
+    <!-- button to submit a search -->
+    <!-- <button>Search</button> -->
+
+    <!-- p element to display the results in -->
+    <!-- <p></p> -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>Skipping iterations with continue</h3>
+
+    <!-- <label for="number">Enter number: </label> -->
+    <!-- <input id="number" type="text" /> -->
+    <!-- <button>Generate integer squares</button> -->
+
+    <!-- <p>Output:</p> -->
+
+    <h3>Output prime numbers</h3>
+
+    <label for="number">Enter number: </label>
+    <input id="number" type="text" />
+    <button>Generate prime numbers between 2 and your number.</button>
+
+    <p>Output:</p>
+    
+    <script>
+        // const btn = document.querySelector('button');
+        // const canvas = document.querySelector('canvas');
+        // const ctx = canvas.getContext('2d');
+
+        // document.addEventListener('DOMContentLoaded', () => {
+            // canvas.width = document.documentElement.clientWidth;
+            // canvas.height = document.documentElement.clientHeight;
+        // })
+
+        // function random(number) {
+            // return Math.floor(Math.random()*number);
+        // }
+
+        // function draw() {
+            // ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // don't have a collection of items to loop through here: just want to run the code 100 times
+            // for loop syntax:
+            // for (initalizer; condition; final-expression) {
+                // code to run
+            //}
+
+            // using a loop to run 100 interactions of the code, each one of which draws a circle in a random position on the page
+            // for (let i = 0; i < 100; i++) {
+                // ctx.beginPath();
+                // ctx.fillStyle = 'rgba(255,0,0,0.5)';
+
+                // remember, random(x) returns a whole number between 0 and x-1
+                // ctx.arc(random(canvas.width), random(canvas.height), random(50), 0, 2 * Math.PI);
+                // ctx.fill();
+            // }
+        // }
+
+        // btn.addEventListener('click',draw);
+
+        const cats = ['Leopard', 'Serval', 'Jaguar', 'Tiger', 'Caracal', 'Lion'];
+
+        // give the collection, cats, get the first item
+        // assign the first item to the variable cat and run the code
+        // get the next item, and repeat second step until I've reached the end of the collection
+        for (const cat of cats) {
+        console.log(cat);
+        }
+
+        // OR
+
+        // loop stops when i reaches the length of the cats array
+        for (let i = 0; i < cats.length; i++) {
+            // i is being used to access each item in the array in turn
+            console.log(cats[i]);
+        }
+
+        // BUT GENERALLY BETTER TO USE for..of if I can
+
+        // map() can be used to do something to each item in a collection and create a new collection
+        // containing the changed items
+
+        function toUpper(string) {
+            return string.toUpperCase();
+        }
+
+        // function is passed into cats.map() and map() calls the function ocne for each item in the array
+        // map() then adds the return value from each function call to a new array and returns the new array
+        const upperCats = cats.map(toUpper);
+
+        console.log(upperCats); // [ "LEOPARD", "SERVAL", "JAGUAR", "TIGER", "CARACAL", "LION" ]
+
+        // filter() tests each item in a collection and creates a new collection containing only items that match
+        function lCat(cat) {
+            // the function apssed in returna a boolean
+            // if true, then the item is included in the new array
+            return cat.startsWith('L');
+        }
+        const filtered = cats.filter(lCat);
+
+        console.log(filtered); // [ "Leopard", "Lion" ]
+
+        // map() and filter() are both often used with function expressions
+
+        // above example written with function expressions to be more compact
+        const filteredA = cats.filter((cat) => cat.startsWith('L'));
+        console.log(filteredA); // [ "Leopard", "Lion" ]
+
+        
+        // const results = document.querySelector('#results');
+
+        // function calculate() {
+            // have to use let for the counter because it's getting reassigned each time I go round the loop
+            // for (let i = 1; i < 10; i++) {
+                // string expressing the calculation I made and the result
+                // const newResult = `${i} x ${i} = ${i * i}`;
+                // \n is telling browser to begin on a new line with the next string
+                // results.textContent += `${newResult}\n`;
+            // }
+            // results.textContent += '\nFinished!';
+        // }
+
+        // const calculateBtn = document.querySelector('#calculate');
+        // const clearBtn = document.querySelector('#clear');
+
+        // calculateBtn.addEventListener('click', calculate);
+        // clearBtn.addEventListener('click', () => results.textContent = '');   
+
+        const myCats = ['Pete', 'Biggles', 'Jasmine'];
+
+        let myFavoriteCats = 'My cats are called ';
+
+        for (let i = 0; i < myCats.length; i++) {
+            if (i === myCats.length - 1) {   // We are at the end of the array, so last iteration includes 'and' and '.'
+                myFavoriteCats += `and ${myCats[i]}.`
+            } else {
+                myFavoriteCats += `${myCats[i]}, `
+            }
+        }
+
+        console.log(myFavoriteCats);     // "My cats are called Pete, Biggles, and Jasmine."
+
+        // const contacts = ['Chris:2232322', 'Sarah:3453456', 'Bill:7654322', 'Mary:9998769', 'Dianne:9384975'];
+        // const para = document.querySelector('p');
+        // const input = document.querySelector('input');
+        // const btn = document.querySelector('button');
+
+        // when the btn is pressed, some code is run to perform the search and return the results
+        // btn.addEventListener('click', () => {
+            
+            // store the value entered in the input in a variable called searchName
+            // const searchName = input.value.toLowerCase();
+            
+            // empty the input and focus it again to ready for the next search
+            // input.value = '';
+            // input.focus();
+            // para.textContent = '';
+            // for (const contact of contacts) {
+                
+                // split the current contact at the colon character and store the resulting two values in an array called splitContact
+                // const splitContact = contact.split(':');
+                
+                // using a conditional to test whether splitContact[0], the contact's name, is equal to the inputted searchName
+                // if (splitContact[0].toLowerCase() === searchName) {
+                    
+                    // if it is, enter a string into the paragraph to report what the contact's number's is
+                    // para.textContent = `${splitContact[0]}'s number is ${splitContact[1]}.`;
+
+                    // use break to end the loop
+                    // break;
+                // }
+            // }
+            // after the loop, check whether a contact was set, and if not, next line
+            // if (para.textContent === '') {
+                // para.textContent = 'Contact not found.';
+            // }
+        // });
+        // const para = document.querySelector('p');
+        // const input = document.querySelector('input');
+        // const btn = document.querySelector('button');
+
+        // btn.addEventListener('click', () => {
+            // para.textContent = 'Output: ';
+            // const num = input.value;
+            // input.value = '';
+            // input.focus();
+
+            // counter starts as 1
+            // exit condition says the loop will stop when the counter becomes bigger than the input num
+            // iterator that adds 1 to the counter each time
+            // for (let i = 1; i <= num; i++) {
+                // find the square root of each number 
+                // let sqRoot = Math.sqrt(i);
+                // check whether the square root is an integer by testing whether it is the same as itself 
+                // when it has been rounded down to the nearest integer
+                // if the square root and the rounded down square root are not equal, the square root is not an integer,
+                // and not interested in that square root
+                // if (Math.floor(sqRoot) !== sqRoot) {
+                    // so use continue to skip on to the next loop iteration without recording the number anywhere
+                    // continue;
+                // }
+                // if the square root is an integer, skip past the if block entirely, so the continue statement is not
+                // executed; concatenate i value plus a space at the end of the paragragh
+                // para.textContent += `${i} `;
+            // }
+        // });
+
+        // while loop
+        // initializer, condition, and final-expression are in the same order in the while loop 
+        // initializer; unlike the for loop, while loop has the initializer variable set before the loop
+        // condition is included inside the parentheses which are preceded by the while keyword instead of for
+        // while (condition) {
+            // code to run
+            // final-expression is included inside the loop after the code to run rather than 
+            // the initializer and the final-expression being included inside the parenthesis
+            // final-expression
+        // }
+
+        let alsoMyFavoriteCats = 'My cats are called ';
+
+        let i = 0;
+
+        while (i < myCats.length) {
+            if (i === myCats.length - 1) {
+                alsoMyFavoriteCats += `and ${myCats[i]}.`;
+            } else {
+                alsoMyFavoriteCats += `${myCats[i]}, `;
+            }
+
+            i++;
+        }
+
+        console.log(alsoMyFavoriteCats); // "My cats are called Pete, Biggles, and Jasmine."
+
+        // do while loop
+        // initializer; is still first
+        // code inside a do while loop is always executed at least once
+        // do {
+            // code to run
+
+            // final-expression
+        // because the condition comes after the code inside the loop
+        // so the code is always run and then check to see if I need to run the code again
+        // } while (condition)
+
+        // in while and for loops, the check comes first so the code might never be executed
+        // in do while loops, the code will always execute as least once
+
+        let againMyFavoriteCats = 'My cats are called ';
+
+        let j = 0;
+
+        do {
+            if (j === myCats.length - 1) {
+                againMyFavoriteCats += `and ${myCats[j]}.`;
+            } else {
+                againMyFavoriteCats += `${myCats[j]}, `;
+            }
+
+            j++;
+            } while (j < myCats.length);
+
+            console.log(againMyFavoriteCats); // "My cats are called Pete, Biggles, and Jasmine."
+
+            // let output = document.querySelector('.output');
+            // output.innerHTML = '';
+
+            // for (let i = 10; i >= 0; i--) {
+	            // const para = document.createElement('p');
+	            // output.appendChild(para);
+	            // if (i === 10) {
+		            // para.textContent = 'Countdown 10';
+	            // } else if (i > 0) {
+		            // para.textContent = `${i}`;
+	            // } else {
+		            // para.textContent = 'Blastoff';
+	            // }
+            // };
+
+            // initializser
+            // let i = 10;
+
+            // while (condition)
+            // while (i >= 0) {
+
+                // code to run
+                // const para = document.createElement('p');
+                // if (i === 10) {
+                    // para.textContent = `Countdown ${i}`;
+                // } else if (i === 0) {
+                    // para.textContent = 'Blast off!';
+                // } else {
+                    // para.textContent = i;
+                // }
+
+                // output.appendChild(para);
+
+                // final-expression included inside the loop after the code to run
+                // i--;
+            // }
+
+                    // while (condition) {
+            // code to run
+            // final-expression is included inside the loop after the code to run rather than 
+            // the initializer and the final-expression being included inside the parenthesis
+            // final-expression
+        // }
+
+        // if I am iterating through an array and don't need access ot the index position of each item, for ... of is the
+        // best choice, better than for, while, and do...while
+
+        let sum = 0;
+
+        while (true) {
+            let value = +prompt("Enter a number", '');
+            // the break here stops the loop immediately if the user enters an empty line or cancels the input
+            // control is then passed to the first line after the loop, alert
+            if (!value) break; // (*)
+            sum += value;
+        }
+        alert( 'Sum: ' + sum );
+
+        // infinite loop + break is great for situations when a loop's condition must be checked not in the beginning or the
+        // end but in the middle or in several places of its body
+
+        for (let i = 0; i < 10; i++) {
+            // if true, skip the remaining part of the body
+            // continue stops the current iteration and forces the loop to start a new one if the condition allows
+            if (i % 2 == 0) continue;
+            alert(i); // 1, then 3, 5, 7, 9
+        }
+
+        // continue helps decrease nesting
+
+        // label here, "outer", is an identifier with a colon before a loop
+        // (the label could be on its own separate line)
+        outer: for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                let input = prompt(`Value at coords (${i},${j})`, '');
+                // if an empty string or canceled, then break <labelName> statement breaks out of both loops
+                if (!input) break outer;
+            }
+        }
+        alert('Done!');
+
+        // continue directive can also be used with a label; making the code execution jump to the next iteration of the
+        // labeled loop
+        // *labels don't let me jump into an arbitrary place in the code
+        // a break directive must be inside a code block
+        // label: {
+            // . . .
+            // break label;
+            // . . .
+        // }
+        // A label is the only way for break/continue to escape a nested loop to go to an outer one
+
+        let k = 3;
+
+        while (k) {
+            alert( k-- );
+        }
+
+        let l = 0;
+        while (++l < 5) alert( l );
+
+        // ++i prefix form first increments i and then returns the new value
+        // i++ postfix form increments i and then returns the old value
+
+        let m = 0;
+        while (m++ < 5) alert( m );
+
+        // below, the increment i++ or ++i, is separated from the condition check
+        // the value returned by the increment is not used here, just i is used
+        for (let n = 0; n < 5; ++n) alert( n );
+
+        for (let o = 0; o < 5; o++) alert( o );
+
+        for (let p = 2; p < 11; p++) {
+            if (!(p % 2)) {
+                alert(p);
+            }
+        }
+
+        for (let r = 0; r < 3; r++) {
+            alert( `number ${r}!` );
+        }
+
+        let q = 0
+        while (q < 3) alert( `number ${(q++)}!` );
+        
+
+        function request() {
+            let answer = prompt('Enter a number greater than 100:', '');
+            let numAnswer = parseInt(answer); 
+            return numAnswer;
+        }
+        let theAnswer = request();       
+        while (theAnswer < 100) {
+            request();
+            if (!theAnswer) break;
+        }
+
+        const para = document.querySelector('p');
+        const input = document.querySelector('input');
+        const btn = document.querySelector('button');
+
+        btn.addEventListener('click', () => {
+            para.textContent = 'Output: ';
+            const n = input.value;
+            input.value = '';
+            input.focus();
+
+            function isPrime(num) {
+                if (num <= 1) {
+                    return false;
+                }
+                // Check if num is divisible by any integer from 2 to num-1
+                for (let i = 2; i < num; i++) {
+                    if (num % i === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            for (let i = 2; i < n; i++) {
+                if (isPrime(i)) {
+                    para.textContent += `${i}  `;
+                } else {
+                    continue;
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

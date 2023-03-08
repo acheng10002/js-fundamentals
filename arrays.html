@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang=""en-us">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Page Title</title>
+</head>
+<body>
+    <h2>JavaScript Arrays</h2>
+
+    <p id="demo"></p>
+    <br>
+    <br>
+    <br>
+    <p>The best way to loop through an array is using a standard for loop:</p>
+
+    <p id="demoA"></p>
+    <br>
+    <br>
+    <br>
+    <p>Array.forEach() calls a function for each array element.</p>
+
+    <p id="demoB"></p>
+    <br>
+    <br>
+    <br>
+    <p>The toString() method returns an array as a comma separated string:</p>
+
+    <p id="demoC"></p>
+    <br>
+    <br>
+    <br>
+    <p>The join() method joins array elements into a string.</p>
+    <p>It this example we have used " * " as a separator between the elements:</p>
+
+    <p id="demoD"></p>
+    <script> 
+        const cars = ["Saab", "Volvo", "BMW"];
+        console.log(cars);
+
+        // spaces and line breaks are not important; a declaration can span multiple lines
+        const carsA = [
+            "Saab",
+            "Volvo",
+            "BMW"
+        ];
+        console.log(carsA);
+
+        // I can create an array and then provide the elements
+        const carsB = [];
+        carsB[0]= "Saab";
+        carsB[1]= "Volvo";
+        carsB[2]= "BMW";
+        console.log(carsB);
+
+        // access an array element by referring to the index number
+        let carB = carsB[1];
+        console.log(carsB);
+
+        // I could also use the JS keyword 'new', but for simplicity, readability, and execution speed, use the array literal method
+        const carsC = new Array("Saab", "Volvo", "BMW");
+
+        // change the value of an element by referring to its index and assigning it to a new value
+        carsB[0] = "Opel";
+        console.log(carsB[0]);
+
+        // the full array can be accessed by referring to the array name
+        document.getElementById("demo").innerHTML = carsB;
+
+        // arrays use nymbers to access its "elements"
+        const person = ["John", "Doe", 46];
+        console.log(person[0]);
+
+        // objects use names to access its "members"/keys
+        const personA = {firstName:"John", lastName:"Doe", age:46}
+        console.log(personA.firstName);
+
+        // array elements can be objects
+        let myArray = [];
+        myArray[0] = Date.now;
+        myArray[1] = carsB;
+        console.log(myArray[0]);
+
+        // JS arrays have built-in properties and methods
+        console.log(carsB.length); // returns the number of elements
+
+        console.log(carsB.sort()); // sorts the array
+
+        // accesses the last array element
+        let carA = carsA[carsA.length - 1];
+        console.log(carA);
+
+        // loops through an array using a for loop
+        const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        let fLen = fruits.length;
+
+        let text = "<ul>";
+        for (let i = 0; i < fLen; i++) {
+            text += "<li>" + fruits[i] + "</li>";
+        }
+        text += "</ul>";
+
+        document.getElementById("demoA").innerHTML = text;
+
+        // Array.forEach() function can also be used to loop through array elements
+        const fruitsA = ["Banana", "Orange", "Apple", "Mango"];
+
+        let textA = "<ul>";
+        fruitsA.forEach(myFunction);
+        textA += "</ul>";
+
+        document.getElementById("demoB").innerHTML = textA;
+
+        function myFunction(value) {
+            textA += "<li>" + value + "</li>";
+        }
+
+        // easiest way to add a new element to an array is using the push() method
+        fruits.push("Lemon");
+        console.log(fruits);
+
+        // new elements can also be added to an array using the length property
+        fruits[fruits.length] = "Pineapple";
+        console.log(fruits);
+
+        //*adding elements with high indices can created undefined "holes" in an array
+
+        //*JS does not support arrays with named indices; it always uses numbered indices
+        //*if I use named indices, JS will redefine the array to an object
+
+        // JS has a built-in array constructor, but I can use [] instead
+        let points = new Array();
+        let pointsA = [];
+
+        // both statements create a new array containing 6 numbers
+        points = new Array(40, 100, 1, 5, 25, 10);
+        pointsA = [40, 100, 1, 5, 25, 10];
+
+        //*again, avoid using new Array() because "new" can produce unexpected results
+
+        // creates an array with one element
+        const pointsB = [40];
+
+        // creates an array with 40 undefined elements
+        const pointsC = new Array(40);
+
+        // problem with typeof is that it returns "object" for arrays
+        let type = typeof fruits;
+        console.log(type);
+        
+        // new method that returns true if a variable is an array
+        console.log(Array.isArray(cars));
+
+        // instanceof operator returns true if an object is created by a given constructor, in this case, Array
+        console.log(fruits instanceof Array);
+
+        // .pop() array method that removes and returns the last item of the array
+        let newFruits = fruits.pop();
+        console.log(newFruits);
+
+        // .splice() adds or removes elements from an array; modifies the original array and returns an array of the removed elements
+        // array.splice(startIndex, deleteCount, item1, item2 ..., itemX)
+        let updatedFruits = fruits.splice(1, 2);
+        console.log(updatedFruits);
+
+        // toString() converts an array to a string of comma separated values
+        document.getElementById("demoC").innerHTML = fruits.toString();
+
+        // join() method joins all array elements into a string, and I can specify the separator
+        document.getElementById("demoD").innerHTML = fruits.join(" * ");
+
+        // pop() method removes the last element from an array
+        fruits.pop();
+        console.log(fruits); //
+
+        // push() method adds a new element to an array at the end
+        fruits.push('Kiwi');
+        console.log(fruits); // Banana, Mango, Kiwi
+
+        // shift() method removes the first array element and "shifts" all other element to a lower index
+        let fruit = fruits.shift();
+        console.log(fruits); // Mango, Kiwi
+
+        // shift() returns the value that was "shifted out"
+        console.log(fruit); // Banana
+
+
+        // unshift() method adds a new element to an array at the beginning and "unshifts" older elements
+        let moreFruits = fruits.unshift('Lemon');
+        console.log(fruits);
+
+        // unshift() returns the new array length
+        console.log(moreFruits);
+
+        // *careful not to use the JS operator "delete"; it leaves undefined holes in the array
+        // delete fruits[0];
+
+        // concat() method creates a new array by concatenating existing arrays
+        const fruitsB = ['Pear', 'Cherry'];
+
+        const evenMoreFruits = fruitsB.concat(fruits);
+        console.log(evenMoreFruits);
+
+        // concat() does not change existing arrays; it always returns a new array
+        // it can take any number of array argumnets
+        const fruitsC = ['Melon', 'Grape'];
+        const fruitsD = ['Apricot', 'Blueberry'];
+
+        const lotsOfFruits = evenMoreFruits.concat(fruitsC, fruitsD);
+        console.log(lotsOfFruits);
+
+        // splice() method adds new items to an array
+        // first parameter defines the position where new elements should be added
+        // second parameter defines how many elements should be removed
+        // rest of the parameters define the new element(s) to be added
+        fruitsC.splice(2, 0, 'Strawberry');
+        console.log(fruitsC); // Melon, Grape, Strawberry
+
+        // splice() method returns an array with deleted items
+        let splicedFruit = fruitsC.splice(2, 1, 'Peach'); // deletes Strawberry and splices in Peach
+        console.log(splicedFruit); // Strawberry
+
+        console.log(fruitsC);
+
+        // splice() can remove elements without leaving 'holes' in the array
+        // first parameter defines the position where new elements should be added
+        // second parameter defines how many elements should be removed
+        // the rest of the parameters are omitted, so no new elements will be added
+        fruitsC.splice(0, 1); // deletes Melon
+        console.log(fruitsC); // Grape, Peach
+
+        // slice() method slices out a piece of an array into a new array
+        let summerFruit = fruitsC.slice(1); 
+        console.log(summerFruit); // Peach
+
+        // slice() does not remove any elements from the source array
+        let listOfFruits = lotsOfFruits.slice(3);
+        console.log(listOfFruits); // Mango, Kiwi, Melon, Grape, Apricot, Blueberry
+
+        // slice() can take 2 arguments
+        // selects elements from the position in first argument and up to but not including the position in second argument
+        let smallerListOfFruits = listOfFruits.slice(1, 3);
+        console.log(smallerListOfFruits);
+
+        // JS automatically converts an array to a comma separated string when a primitive value is expected
+        // this is always the case when I try to output an array
+        // ALL JS OBJECTS HAVE A toString() method
+
+    </script>
+</body>
+</html>
